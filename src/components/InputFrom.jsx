@@ -257,7 +257,7 @@ const json ={
        },
        {
         "type": "text",
-        "name": "Experiment number range",
+        "name": "experimentNumberRange",
         "title": "Experiments numbers range",
         "description": "1-10,5,6",
         "hideNumber": true,

@@ -102,6 +102,7 @@ const Pdf = (props) => {
   }
 
   const allocatedRollNumbers = allocateRollNumber(rollNumberList, experimentList, numberOfExperimentsPerStudent);
+  console.log(allocatedRollNumbers)
 
   const target = useRef();
 
