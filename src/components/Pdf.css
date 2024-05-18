@@ -50,11 +50,11 @@
     width: 90%;
     font-family: Arial, sans-serif;
     margin: 40px;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
   }
   .side-heading{
     font-weight: bold;
-    font-size: 17px;
+    font-size: 18px;
     padding-top: 6px;
     padding-bottom: 6px;
     width: 100%;
@@ -63,6 +63,7 @@
   .side-heading-value{
     font-weight: normal;
     font-weight: 400;
+    font-size: 17px;
   }
   .table-container{
     width:90%;

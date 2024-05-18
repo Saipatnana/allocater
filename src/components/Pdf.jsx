@@ -2,28 +2,7 @@ import "./Pdf.css";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
 import { useRef } from "react";
 
-const options = {
-  method: "save",
-  filename: "my_document.pdf",
-  resolution: Resolution.HIGH,
-  page: {
-    margin: Margin.SMALL,
-    format: "A4",
-    orientation: "portrait",
-  },
-  canvas: {
-    mimeType: "image/jpeg",
-    qualityRatio: 1,
-  },
-  overrides: {
-    pdf: {
-      compress: true,
-    },
-    canvas: {
-      useCORS: true,
-    },
-  },
-};
+
 
 const getTargetElement = () => document.getElementById("content-id");
 
@@ -75,6 +54,47 @@ const Pdf = (props) => {
     numberOfExperimentsPerStudent,
   } = formData;
 
+  function capitalizeFirstLetterOfEachWord(sentence) {
+    // Define the list of words to exclude from capitalization
+    const smallWords = ['a', 'an', 'the', 'and', 'but', 'or', 'nor', 'for', 'so', 'yet', 'at', 'by', 'from', 'of', 'on', 'to', 'with'];
+  
+    // Split the sentence into an array of words
+    const words = sentence.split(' ');
+  
+    // Map through each word and conditionally capitalize the first letter
+    const capitalizedWords = words.map((word, index) => {
+      if (index === 0 || !smallWords.includes(word)) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+      return word;
+    });
+  
+    // Join the capitalized words back into a single string
+    return capitalizedWords.join(' ');
+  }
+  const options = {
+    method: "save",
+    filename: `${capitalizeFirstLetterOfEachWord(subject)}`,
+    resolution: Resolution.HIGH,
+    page: {
+      margin: Margin.SMALL,
+      format: "A4",
+      orientation: "portrait",
+    },
+    canvas: {
+      mimeType: "image/jpeg",
+      qualityRatio: 1,
+    },
+    overrides: {
+      pdf: {
+        compress: true,
+      },
+      canvas: {
+        useCORS: true,
+      },
+    },
+  };
+
   let rollNumberList = processInput(rollNumberRange).map((num) => rollNumberPrefix + num);
 
   if (addLateralEnters) {
@@ -125,7 +145,7 @@ const Pdf = (props) => {
           <div className="information-container">
             <div className="information col-1">
               <p className="side-heading">
-                Subject : <span className="side-heading-value">{subject}</span>
+                Subject : <span className="side-heading-value">{`${capitalizeFirstLetterOfEachWord(subject)} Lab`}</span>
               </p>
               <p className="side-heading">
                 Branch : <span className="side-heading-value">{branch}</span>
