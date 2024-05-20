@@ -73,7 +73,7 @@ const Pdf = (props) => {
     return capitalizedWords.join(' ');
   }
   const options = {
-    method: "save",
+    method: "blob",
     filename: `${capitalizeFirstLetterOfEachWord(subject)}`,
     resolution: Resolution.HIGH,
     page: {
@@ -94,7 +94,7 @@ const Pdf = (props) => {
       },
     },
   };
-
+  console.log(options)
   let rollNumberList = processInput(rollNumberRange).map((num) => rollNumberPrefix + num);
 
   if (addLateralEnters) {
