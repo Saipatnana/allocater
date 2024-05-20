@@ -149,22 +149,8 @@ const json ={
         ]
        },
        {
-        "type": "text",
-        "name": "subject",
-        "title": "Subject ",
-        "hideNumber": true,
-        "isRequired": true,
-        "validators": [
-         {
-          "type": "text",
-          "minLength": 5
-         }
-        ]
-       },
-       {
         "type": "dropdown",
         "name": "semester",
-        "startWithNewLine": false,
         "title": "Semester ",
         "hideNumber": true,
         "isRequired": true,
@@ -177,6 +163,20 @@ const json ={
          "3 - 2",
          "4 - 1",
          "4 - 2"
+        ]
+       },
+       {
+        "type": "text",
+        "name": "subject",
+        "startWithNewLine": false,
+        "title": "Subject ",
+        "hideNumber": true,
+        "isRequired": true,
+        "validators": [
+         {
+          "type": "text",
+          "minLength": 5
+         }
         ]
        },
        {
@@ -259,7 +259,7 @@ const json ={
         "type": "text",
         "name": "experimentNumberRange",
         "title": "Experiments numbers range",
-        "description": "1-10,5,6",
+        "description": "Ex: 1-10,5,6",
         "hideNumber": true,
         "isRequired": true,
         "validators": [
@@ -268,6 +268,24 @@ const json ={
           "text": "Incorrect input",
           "regex": "^(?:(\\d+(-\\d+)?)|(\\d+))(,(?:(\\d+(-\\d+)?)|(\\d+)))*$"
          }
+        ]
+       },
+       {
+        "type": "dropdown",
+        "name": "typeOfAllocation",
+        "startWithNewLine": false,
+        "title": "Type of allocation ",
+        "hideNumber": true,
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "randomly",
+          "text": "Randomly"
+         },
+         {
+          "value": "serially",
+          "text": "Serially"
+         },
         ]
        },
        {
@@ -296,6 +314,7 @@ function InputFrom() {
 
   const handleComplete = (sender) => {
     try {
+      console.log(sender)
       const formData = sender.data;
       setFormData(formData);
     } catch (error) {
