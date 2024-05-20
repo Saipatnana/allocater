@@ -73,7 +73,7 @@ const Pdf = (props) => {
     return capitalizedWords.join(' ');
   }
   const options = {
-    method: "blob",
+    method: "save",
     filename: `${capitalizeFirstLetterOfEachWord(subject)}`,
     resolution: Resolution.HIGH,
     page: {
