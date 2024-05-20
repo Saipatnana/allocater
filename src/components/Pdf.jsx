@@ -179,6 +179,7 @@ const Pdf = (props) => {
               </tbody>
             </table>
           </div>
+          <p className="footer">Developed by Sai Patnana</p>
         </div>
         <div className="btn-container">
           <button className="download-btn" onClick={() => generatePDF(getTargetElement, options)}>
