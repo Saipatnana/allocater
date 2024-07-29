@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
 import "./Pdf.css";
+import { tryFocusPage } from "survey-core";
 
 
 const getTargetElement = () => document.getElementById("content-id");
@@ -8,6 +9,7 @@ const getTargetElement = () => document.getElementById("content-id");
 const processInput = (input) => {
   if (!input || typeof input !== "string") return [];
   let numbers = input.split(",").map((num) => num.trim());
+  const [loading,setLoading] = useState(false);
   let output = [];
   numbers.forEach((number) => {
     if (number.includes("-")) {
@@ -206,9 +208,9 @@ const Pdf = (props) => {
       <div className="btn-container">
         <button
           className="download-btn"
-          onClick={() => generatePDF(getTargetElement, options)}
+          onClick={() => {generatePDF(getTargetElement, options);setLoading(true)}}
         >
-          Download PDF
+          {loading ? "Downloading...":"Download"}
         </button>
       </div>
     </div>
