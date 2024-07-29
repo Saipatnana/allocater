@@ -9,7 +9,7 @@ const getTargetElement = () => document.getElementById("content-id");
 const processInput = (input) => {
   if (!input || typeof input !== "string") return [];
   let numbers = input.split(",").map((num) => num.trim());
-  const [loading,setLoading] = useState(false);
+  
   let output = [];
   numbers.forEach((number) => {
     if (number.includes("-")) {
@@ -83,6 +83,7 @@ const allocateRollNumberRandomly = (rollNumberList, experimentNumberList, experi
 };
 
 const Pdf = (props) => {
+  const [loading,setLoading] = useState(false);
   const { formData } = props;
   const {
     date,
@@ -151,6 +152,15 @@ const Pdf = (props) => {
   }
 
   const target = useRef();
+  const handleDownload = () => {
+    setLoading(true);
+    generatePDF(getTargetElement, options)
+      .then(() => setLoading(false))
+      .catch((error) => {
+        console.error("Error generating PDF:", error);
+        setLoading(false);
+      });
+  };
 
   return (
     <div className="App">
@@ -208,7 +218,7 @@ const Pdf = (props) => {
       <div className="btn-container">
         <button
           className="download-btn"
-          onClick={() => {generatePDF(getTargetElement, options);setLoading(true)}}
+          onClick={handleDownload}
         >
           {loading ? "Downloading...":"Download"}
         </button>
